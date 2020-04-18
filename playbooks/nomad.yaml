@@ -1,12 +1,14 @@
 - hosts: 127.0.0.1
   connection: local
-  roles:
-    - role: ../roles/common/etckeeper    
+
+  remote_user: rwlove
+  roles: 
     - role: ../roles/media
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
     - role: ../roles/desktop/authentication
     - role: ../roles/work/redhat
+    - role: ../roles/common/etckeeper
 
   vars:
     USER: rwlove

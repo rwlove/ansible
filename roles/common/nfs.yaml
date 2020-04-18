@@ -1,4 +1,5 @@
 - name: Ensure NFS common is installed.
+  become: yes
   package:
     name: nfs-common
     state: installed

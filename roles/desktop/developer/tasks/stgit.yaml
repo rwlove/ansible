@@ -1,4 +1,5 @@
 - name: Install stgit
+  become: yes
   package:
     name: stgit
     state: present

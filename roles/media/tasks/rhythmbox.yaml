@@ -1,9 +1,11 @@
 - name: Install Rhythmbox
+  become: yes
   package:
     name: rhythmbox
     state: present
 
 - name: Mount brain's MP3 directory
+  become: yes
   mount:
     path: /home/rwlove/Music
     src: brain:/mnt/mass_storage/storage/MP3s
