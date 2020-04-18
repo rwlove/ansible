@@ -1,0 +1,3 @@
+---
+- import_tasks: git.yaml
+- import_tasks: stgit.yaml

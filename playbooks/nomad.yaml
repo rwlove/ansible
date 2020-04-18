@@ -3,6 +3,7 @@
   roles: 
     - role: ../roles/media
     - role: ../roles/desktop/terminal
+    - role: ../roles/desktop/developer
   vars:
     USER: rwlove
     KODI_CONFIG_DIR: /home/rwlove/.kodi

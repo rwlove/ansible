@@ -1,0 +1,13 @@
+- name: Install git
+  package:
+    name: git
+    state: present
+
+- name: Install gitconfig
+  become_user: "{{USER}}"
+  copy:
+    src: "files/gitconfig"
+    dest: "/home/{{USER}}/.gitconfig"
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '600'
