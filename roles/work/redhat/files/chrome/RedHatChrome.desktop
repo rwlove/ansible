@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=google-chrome
+Exec=google-chrome --user-data-dir=/home/rwlove/.config/google-chrome/RH --restore-last-session
+Name[en_US]=Chrome-Red Hat
+Name=Chrome-Red Hat
+Icon=google-chrome

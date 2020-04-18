@@ -1,10 +1,9 @@
 ---
 - name: Install Chrome Repo (Ubuntu)
   apt_repository:
-    name: google-chrome
-    description: google-chrome
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
-    state: latest
+    state: present
+    update_cache: yes
   when: ansible_distribution == 'Ubuntu'
   register: ubuntu_install
 
@@ -22,3 +21,21 @@
     name: google-chrome-stable
     state: latest
   when: ubuntu_install is succeeded or fedora_install is succeeded
+
+- name: Create Chrome Red Hat User Directory
+  become_user: "{{USER}}"
+  file:
+    path: ~{{USER}}/.config/google-chrome/RH
+    state: directory
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '700'
+
+- name: Copy RedHatChrome.desktop
+  become_user: "{{USER}}"
+  copy:
+    src: files/chrome/RedHatChrome.desktop
+    dest: ~{{USER}}/.local/share/applications/RedHatChrome.desktop
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '644'
