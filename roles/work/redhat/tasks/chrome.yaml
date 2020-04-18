@@ -1,0 +1,24 @@
+---
+- name: Install Chrome Repo (Ubuntu)
+  apt_repository:
+    name: google-chrome
+    description: google-chrome
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: latest
+  when: ansible_distribution == 'Ubuntu'
+  register: ubuntu_install
+
+- name: Install Chrome Repo (Fedora)
+  yum_repository:
+    name: google-chrome
+    description: google-chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch/
+    gpgkey: https://dl-ssl.google.com/linux/linux_signing_key.pub
+  when: ansible_distribution == 'Fedora'
+  register: fedora_install
+
+- name: Install chrome
+  package:
+    name: google-chrome-stable
+    state: latest
+  when: ubuntu_install is succeeded or fedora_install is succeeded

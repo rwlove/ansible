@@ -1,0 +1,24 @@
+---
+- name: Install Slack Repo (Ubuntu)
+  apt_repository:
+    name: Slack
+    description: Slack
+    repo: deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
+    state: latest
+  when: ansible_distribution == 'Ubuntu'
+  register: ubuntu_install
+
+- name: Install Slack Repo (Fedora)
+  yum_repository:
+    name: slack
+    description: slack
+    baseurl: https://packagecloud.io/slacktechnologies/slack/fedora/21/x86_64
+    gpgkey: https://packagecloud.io/gpg.key
+  when: ansible_distribution == 'Fedora'
+  register: fedora_install
+
+- name: Install chrome
+  package:
+    name: slack
+    state: latest
+  when: ubuntu_install is succeeded or fedora_install is succeeded
