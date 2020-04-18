@@ -1,0 +1,58 @@
+- name: Installing Zsh and git
+  package:
+    name: zsh
+    state: latest
+  register: installation
+
+- name: Backing up existing ~/.zshrc
+  shell: if [ -f {{USER}}/.zshrc ]; then mv {{USER}}/.zshrc {{USER}}/.zshrc.orig}; fi
+  when: installation is succeeded
+
+- name: Cloning oh-my-zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: "~{{USER}}/.oh-my-zsh"
+  when: installation is succeeded
+  register: cloning
+
+- name: Creating new ~/.zshrc
+  copy:
+    src: "~{{USER}}/.oh-my-zsh/templates/zshrc.zsh-template"
+    dest: "~{{USER}}/.zshrc"
+  when: cloning is succeeded
+
+- name: Change shell to ZSH
+  shell: chsh -s $(which zsh) {{USER}}
+  when: cloning is succeeded
+
+- name: Create Oh My ZSH Completions Directory
+  file:
+    path: "~{{USER}}/.oh-my-zsh/completions"
+    state: directory
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '700'
+  when: cloning is succeeded
+
+- name: Copy stgit Completion
+  copy:
+    src: files/stgit/stgit.zsh
+    dest: "~{{USER}}/.oh-my-zsh/completions/_stgit"
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '600'
+  when: cloning is succeeded
+
+- name: Copy aliases file
+  copy:
+    src: files/aliases
+    dest: "~{{USER}}/.aliases"
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '600'
+  when: cloning is succeeded
+
+- name: Add Aliases Source To ZSH Config
+  lineinfile:
+    path: ~{{USER}}/.zshrc
+    line: source $HOME/.aliases

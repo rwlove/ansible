@@ -1,0 +1,6 @@
+---
+- name: Install Tilix
+  become: yes
+  package:
+    name: tilix
+    state: present

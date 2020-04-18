@@ -1,0 +1,3 @@
+---
+- import_tasks: tilix.yaml
+- import_tasks: omzsh.yaml
