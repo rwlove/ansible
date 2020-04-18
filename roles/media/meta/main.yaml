@@ -1,0 +1,5 @@
+galaxy_info:
+  role_name: media
+  author: Robert Love
+  description: Kodi and Rythmbox install and configuration
+  dependencies: nfs

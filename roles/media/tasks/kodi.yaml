@@ -1,0 +1,32 @@
+- name: Install Kodi
+  package:
+    name: {{item}}
+    state: present
+  with_items:
+    - kodi
+    - kodi-pvr-mythtv
+
+- name: Create Kodi configuration directories
+  become_user: "{{USER}}"
+  file:
+    path: "{{KODI_CONFIG_DIR}}/{{item}}"
+    state: directory
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '700'
+  with_items:
+    - userdata
+    - userdata/addon_data/pvr.mythtv
+
+- name: Copy advancedsettings.xml
+  become_user: "{{USER}}"
+  copy:
+    src: "files/kodi/{{item}}"
+    dest: "{{KODI_CONFIG_DIR}}/{{item}}"
+    owner: "{{USER}}"
+    group: "{{USER}}"
+    mode: '600'
+  with_items:
+    - userdata/advancedsettings.xml
+    - userdata/sources.xml
+    - userdata/addon_data/pvr.mythtv/settings.xml

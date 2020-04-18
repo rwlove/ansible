@@ -1,0 +1,12 @@
+- name: Install Rhythmbox
+  package:
+    name: rhythmbox
+    state: present
+
+- name: Mount brain's MP3 directory
+  mount:
+    path: /home/rwlove/Music
+    src: brain:/mnt/mass_storage/storage/MP3s
+    fstype: nfs
+    opts: ro,defaults
+    state: mounted

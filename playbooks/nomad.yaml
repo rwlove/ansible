@@ -1,0 +1,7 @@
+- hosts: 127.0.0.1
+  connection: local
+  roles: 
+    - role: ../roles/media
+  vars:
+    USER: rwlove
+    KODI_CONFIG_DIR: /home/rwlove/.kodi

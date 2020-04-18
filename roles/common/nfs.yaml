@@ -1,0 +1,5 @@
+- name: Ensure NFS common is installed.
+  package:
+    name: nfs-common
+    state: installed
+    update_cache: yes
