@@ -2,6 +2,7 @@
   connection: local
   roles: 
     - role: ../roles/media
+    - role: ../roles/desktop/terminal
   vars:
     USER: rwlove
     KODI_CONFIG_DIR: /home/rwlove/.kodi
