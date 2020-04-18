@@ -9,6 +9,8 @@
   when: installation is succeeded
 
 - name: Cloning oh-my-zsh
+  become: yes
+  become_user: "{{USER}}"
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: "~{{USER}}/.oh-my-zsh"
