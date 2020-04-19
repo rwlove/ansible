@@ -1,0 +1,9 @@
+- hosts: '*'
+  remote_user: root
+  hosts:
+    - vmheart
+  roles: 
+    - role: ../roles/desktop/terminal
+    - role: ../roles/desktop/developer
+  vars:
+    USER: rwlove

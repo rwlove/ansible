@@ -1,0 +1,8 @@
+all:
+  hosts:
+    brain:
+      ansible_host: brain.thesteamedcrab.com
+      ansible_user: root
+    vmheart:
+      ansible_host: vmheart.thesteamedcrab.com
+      ansible_user: root
