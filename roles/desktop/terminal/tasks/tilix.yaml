@@ -4,3 +4,9 @@
   package:
     name: tilix
     state: present
+
+- name: Make Tilix default for <ctrl>+<alt>+t
+  alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/tilix.wrapper
+
