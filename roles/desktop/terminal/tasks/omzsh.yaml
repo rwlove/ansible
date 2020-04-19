@@ -66,3 +66,8 @@
     path: ~{{USER}}/.zshrc
     regexp: '^plugins='
     line: plugins=(git emacs ansible docker dnf github gitignore gnu-utils golang helm jira kubectl nmap oc python rsync ssh-agent sudo systemd ubuntu cp command-not-found aws adb history pip gpg-agent)
+
+- name: Fix for 'touch' failing in ZSH
+  lineinfile:
+    path: ~{{USER}}/.zshrc
+    line: unsetopt nomatch
