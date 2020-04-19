@@ -18,6 +18,8 @@
   register: cloning
 
 - name: Creating new ~/.zshrc
+  become: yes
+  become_user: "{{USER}}"
   copy:
     src: "~{{USER}}/.oh-my-zsh/templates/zshrc.zsh-template"
     dest: "~{{USER}}/.zshrc"
