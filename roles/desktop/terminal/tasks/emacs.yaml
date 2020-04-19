@@ -1,0 +1,23 @@
+- name: Installing Emacs
+  package:
+    name: emacs
+    state: latest
+  register: installation
+
+- name: Installing Emacs YAML and Python Modes (Ubuntu)
+  package:
+    name: "{{item}}"
+    state: latest
+  register: ubuntu_emacs_yaml_installation
+  when: installation is succeeded and ansible_distribution == 'Ubuntu'
+  with_items:
+    - yaml-mode
+    - python-mode
+    - pymacs
+
+- name: Installing Emacs YAML and Python Modes (Fedora)
+  dnf:
+    name: ['emacs-yaml-mode', 'emacs-dockerfile-mode', 'emacs-rpm-spec-mode', 'python3-elpy']
+    state: latest
+  register: fedora_emacs_yaml_installation
+  when: installation is succeeded and ansible_distribution == 'Fedora'
