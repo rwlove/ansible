@@ -4,7 +4,9 @@
     - role: ../roles/media
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
+    - role: ../roles/desktop/authentication
     - role: ../roles/work/redhat
+
   vars:
     USER: rwlove
     KODI_CONFIG_DIR: /home/rwlove/.kodi
