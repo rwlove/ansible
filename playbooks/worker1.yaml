@@ -1,0 +1,4 @@
+- hosts: worker1
+  roles:
+    - role: ../roles/kubernetes/worker
+
