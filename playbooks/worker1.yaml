@@ -1,5 +1,9 @@
 - hosts: worker1
   roles:
-    - role: ../roles/kubernetes/worker
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
+    - role: ../roles/kubernetes/worker
+
+  vars:
+    USER: root
+    HOME: /root

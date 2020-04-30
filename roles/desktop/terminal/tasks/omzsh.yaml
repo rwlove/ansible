@@ -5,7 +5,7 @@
   register: installation
 
 - name: Backing up existing ~/.zshrc
-  shell: if [ -f {{USER}}/.zshrc ]; then mv {{USER}}/.zshrc {{USER}}/.zshrc.orig}; fi
+  shell: if [ -f {{HOME}}/.zshrc ]; then mv {{HOME}}/.zshrc {{HOME}}/.zshrc.orig}; fi
   when: installation is succeeded
 
 - name: Cloning oh-my-zsh
@@ -21,8 +21,8 @@
   become: yes
   become_user: "{{USER}}"
   copy:
-    src: "~{{USER}}/.oh-my-zsh/templates/zshrc.zsh-template"
-    dest: "~{{USER}}/.zshrc"
+    src: "{{HOME}}/.oh-my-zsh/templates/zshrc.zsh-template"
+    dest: "{{HOME}}/.zshrc"
   when: cloning is succeeded
 
 - name: Change shell to ZSH
@@ -31,7 +31,7 @@
 
 - name: Create Oh My ZSH Completions Directory
   file:
-    path: "~{{USER}}/.oh-my-zsh/completions"
+    path: "{{HOME}}/.oh-my-zsh/completions"
     state: directory
     owner: "{{USER}}"
     group: "{{USER}}"
@@ -41,7 +41,7 @@
 - name: Copy stgit Completion
   copy:
     src: files/stgit/stgit.zsh
-    dest: "~{{USER}}/.oh-my-zsh/completions/_stgit"
+    dest: "{{HOME}}/.oh-my-zsh/completions/_stgit"
     owner: "{{USER}}"
     group: "{{USER}}"
     mode: '600'
@@ -50,7 +50,7 @@
 - name: Copy aliases file
   copy:
     src: files/aliases
-    dest: "~{{USER}}/.aliases"
+    dest: "{{HOME}}/.aliases"
     owner: "{{USER}}"
     group: "{{USER}}"
     mode: '600'
@@ -58,16 +58,16 @@
 
 - name: Add Aliases Source To ZSH Config
   lineinfile:
-    path: ~{{USER}}/.zshrc
+    path: "{{HOME}}/.zshrc"
     line: source $HOME/.aliases
 
 - name: Update Plugins in ZSH Config
   lineinfile:
-    path: ~{{USER}}/.zshrc
+    path: "{{HOME}}/.zshrc"
     regexp: '^plugins='
     line: plugins=(git emacs ansible docker dnf github gitignore gnu-utils golang helm jira kubectl nmap oc python rsync ssh-agent sudo systemd ubuntu cp command-not-found aws adb history pip gpg-agent)
 
 - name: Fix for 'touch' failing in ZSH
   lineinfile:
-    path: ~{{USER}}/.zshrc
+    path: "{{HOME}}/.zshrc"
     line: unsetopt nomatch
