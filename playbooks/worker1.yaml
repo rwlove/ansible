@@ -1,7 +1,7 @@
 - hosts: worker1
   roles:
-    - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
+    - role: ../roles/desktop/terminal
     - role: ../roles/kubernetes/worker
 
   vars:
