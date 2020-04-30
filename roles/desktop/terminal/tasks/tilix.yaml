@@ -4,9 +4,16 @@
   package:
     name: tilix
     state: present
+  register: tilix_install
 
 - name: Make Tilix default for <ctrl>+<alt>+t
   alternatives:
     name: x-terminal-emulator
     path: /usr/bin/tilix.wrapper
+  when: ansible_distribution == 'Ubuntu' and tilix_install is succeeded
 
+#- name: Make Tilix default for <ctrl>+<alt>+t
+#  alternatives:
+#    name: x-terminal-emulator
+#    path: /usr/bin/tilix
+#  when: ansible_distribution == 'Fedora' and tilix_install is succeeded
