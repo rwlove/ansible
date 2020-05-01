@@ -1,0 +1,21 @@
+---
+- name: Ensure firewalld is installed
+  dnf:
+    name: firewalld
+    state: installed
+  register: firewalld_installed
+  when: ansible_distribution == 'Fedora'
+  
+- name: Ensure firewalld is disabled
+  systemd:
+    name: firewalld
+    enabled: no
+  register: firewalld_disabled
+  when: firewalld_installed is succeeded
+  
+- name: be sure firewalld is stopped
+  systemd:
+    name: firewalld
+    state: stopped
+  ignore_errors: yes
+  when: firewalld_installed is succeeded
