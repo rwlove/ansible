@@ -9,10 +9,14 @@
 
 - name: Install docker
   package:
-    name: docker-ce
+    name: "{{item}}"
     state: present
   when: fedora_install is succeeded
   register: install_packages
+  with_items:
+    - docker-ce
+    - containerd.io
+    - docker-ce-cli
 
 - name: Copy daemon.json to /etc/docker/
   copy:
