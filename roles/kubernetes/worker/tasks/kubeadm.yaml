@@ -40,6 +40,13 @@
   when: swapoff_1 is succeeded
   register: swapoff_2
 
+- name: Enable/Start the Kublet
+  systemd:
+    name: kubelet
+    state: started
+    enabled: yes
+  when: install_packages is succeeded
+  
 #- name: Copy k8s.conf file for sysctl
 #  copy:
 #    src: files/k8s.conf

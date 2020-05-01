@@ -1,0 +1,4 @@
+- name: Install ovn-kubernetes git repo
+  git:
+    repo: https://github.com/ovn-org/ovn-kubernetes
+    dest: "{{HOME}}/kubernetes/ovn-kubernetes"

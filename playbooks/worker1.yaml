@@ -3,6 +3,7 @@
     - role: ../roles/desktop/developer
     - role: ../roles/desktop/terminal
     - role: ../roles/kubernetes/worker
+    - role: ../roles/kubernetes/network/ovn-kubernetes
 
   vars:
     USER: root
