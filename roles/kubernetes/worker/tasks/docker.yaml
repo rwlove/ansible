@@ -14,8 +14,17 @@
   when: fedora_install is succeeded
   register: install_packages
 
-- name: Start docker service
+- name: Copy daemon.json to /etc/docker/
+  copy:
+    src: files/daemon.json
+    dest: /etc/docker/daemon.json
+  register: daemon_json_installed
+  when: install_packages is succeeded
+
+- name: Restart docker service
   systemd:
     name: docker
-    state: started
+    state: restarted
     enabled: yes
+    daemon_reload: yes
+  when: daemon_json_installed is succeeded
