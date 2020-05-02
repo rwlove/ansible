@@ -35,7 +35,7 @@
 - name: Disable SWAP in fstab since kubernetes can't work with swap enabled (2/2)
   replace:
     path: /etc/fstab
-    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    regexp: '^([^#].*?\sswap\s+defaults\s+.*)$'
     replace: '# \1'
   when: swapoff_1 is succeeded
   register: swapoff_2
