@@ -25,6 +25,11 @@
   register: daemon_json_installed
   when: install_packages is succeeded
 
+- name: mkdir /etc/systemd/system/docker.service.d
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+  
 - name: Restart docker service
   systemd:
     name: docker
