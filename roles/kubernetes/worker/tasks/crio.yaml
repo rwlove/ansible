@@ -1,0 +1,27 @@
+---
+- name: ensure Docker is removed
+  package:
+    name: "{{item}}"
+    state: removed
+  register: remove_docker_packages
+  with_items:
+    - docker-ce
+    - containerd.io
+    - docker-ce-cli
+
+- name: Enable CRI-O
+  command: dnf module enable -y cri-o:1.18
+    
+- name: Install CRI-O
+  package:
+    name: "{{item}}"
+    state: present
+  register: install_packages
+  with_items:
+    - cri-o
+
+- name: Copy /etc/default/kubelet
+  copy:
+    src: files/kubelet
+    dest: /etc/default/kubelet
+  

@@ -1,4 +1,5 @@
 ---
-- import_tasks: docker.yaml
+#- import_tasks: docker.yaml
+- import_tasks: crio.yaml
 - import_tasks: kubeadm.yaml
 - import_tasks: firewalld.yaml
