@@ -16,12 +16,19 @@
   package:
     name: "{{item}}"
     state: present
-  register: install_packages
+  register: crio_install
   with_items:
     - cri-o
 
-- name: Copy /etc/default/kubelet
+- name: Restart crio service
+  systemd:
+    name: crio
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  when: crio_install is succeeded
+
+- name: Copy kublet file
   copy:
     src: files/kubelet
-    dest: /etc/default/kubelet
-  
+    dest: /etc/sysconfig/kubelet
