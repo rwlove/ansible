@@ -1,0 +1,5 @@
+---
+- name: Install gnome-tweak-tool
+  package:
+    name: gnome-tweak-tool
+    state: present

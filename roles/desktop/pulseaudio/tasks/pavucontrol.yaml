@@ -1,0 +1,5 @@
+---
+- name: Install pavucontrol
+  package:
+    name: pavucontrol
+    state: present
