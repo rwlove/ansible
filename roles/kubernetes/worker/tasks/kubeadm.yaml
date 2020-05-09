@@ -6,13 +6,13 @@
     gpgkey:
       - https://packages.cloud.google.com/yum/doc/yum-key.gpg
       - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-  when: ansible_distribution == 'Fedora'
-  register: fedora_install
+  when: ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
+  register: redhat_install
 
 - name: Disable SELinux
   selinux:
     state: disabled
-  when: fedora_install is succeeded
+  when: redhat_install is succeeded
   register: selinux_disabled
 
 - name: Install kubelet, kubeadm and kubectl

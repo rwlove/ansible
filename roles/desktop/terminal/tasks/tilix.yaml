@@ -5,6 +5,7 @@
     name: tilix
     state: present
   register: tilix_install
+  when: ansible_distribution != 'CentOS'
 
 - name: Make Tilix default for <ctrl>+<alt>+t
   alternatives:

@@ -7,11 +7,24 @@
   when: ansible_distribution == 'Fedora'
   register: fedora_install
 
+- name: Install Docker Repo (CentOS)
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+  when: ansible_distribution == 'CentOS'
+  register: centos_install
+
+- name: Install containerd
+  yum:
+    name: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+  when: ansible_distribution == 'CentOS' and centos_install is succeeded
+  register: containerd_install
+  
 - name: Install docker
   package:
     name: "{{item}}"
     state: present
-  when: fedora_install is succeeded
+  when: fedora_install is succeeded or centos_install is succeeded
   register: install_packages
   with_items:
     - docker-ce
@@ -23,17 +36,18 @@
     src: files/daemon.json
     dest: /etc/docker/daemon.json
   register: daemon_json_installed
-  when: install_packages is succeeded
+  when: install_packages is succeeded and ansible_distribution == 'Fedora'
 
 - name: mkdir /etc/systemd/system/docker.service.d
   file:
     path: /etc/systemd/system/docker.service.d
     state: directory
-  
+  when: ansible_distribution == 'Fedora'
+
 - name: Restart docker service
   systemd:
     name: docker
     state: restarted
     enabled: yes
     daemon_reload: yes
-  when: daemon_json_installed is succeeded
+  when: daemon_json_installed is succeeded or (centos_install is succeeded and install_packages is succeeded)
