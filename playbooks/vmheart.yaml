@@ -2,7 +2,8 @@
   remote_user: root
   hosts:
     - vmheart
-  roles: 
+  roles:
+    - role: ../roles/common/etckeeper    
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
   vars:

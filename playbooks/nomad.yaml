@@ -1,6 +1,7 @@
 - hosts: 127.0.0.1
   connection: local
-  roles: 
+  roles:
+    - role: ../roles/common/etckeeper    
     - role: ../roles/media
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer

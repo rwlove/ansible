@@ -1,0 +1,17 @@
+---
+- name: Install git
+  package:
+    name: git
+    state: present
+  register: git_install
+
+- name: Install etckeeper
+  package:
+    name: etckeeper
+    state: present
+  register: etckeeper_install
+
+- name: Initalize etckeeper
+  command: etckeeper init
+  creates: /etc/.git
+  when: git_install is succeeded and etckeeper_install is succeeded

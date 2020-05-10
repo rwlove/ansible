@@ -1,6 +1,7 @@
 - hosts: '*'
   remote_user: root
-  roles: 
+  roles:
+    - role: ../roles/common/etckeeper
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
   vars:
