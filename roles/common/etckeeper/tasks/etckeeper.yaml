@@ -13,5 +13,4 @@
 
 - name: Initalize etckeeper
   command: etckeeper init
-  creates: /etc/.git
   when: git_install is succeeded and etckeeper_install is succeeded

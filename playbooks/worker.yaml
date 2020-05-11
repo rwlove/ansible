@@ -1,12 +1,14 @@
 - hosts:
     - worker2
   roles:
-    - role: ../roles/common/etckeeper
-    - role: ../roles/desktop/developer
-    - role: ../roles/desktop/terminal
+    - role: common/etckeeper
+    - role: server/network-tools      
+    - role: desktop/developer
+    - role: desktop/terminal
     - role: ../roles/kubernetes/worker
 #    - role: ../roles/kubernetes/network/ovn-kubernetes
 
   vars:
     USER: root
     HOME: /root
+    roles_path: ../roles
