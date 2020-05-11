@@ -1,11 +1,12 @@
 - hosts:
+    - worker1
     - worker2
   roles:
     - role: common/etckeeper
-    - role: server/network-tools      
+    - role: server/network-tools
     - role: desktop/developer
     - role: desktop/terminal
-    - role: ../roles/kubernetes/worker
+    - role: kubernetes/worker
 #    - role: ../roles/kubernetes/network/ovn-kubernetes
 
   vars:
