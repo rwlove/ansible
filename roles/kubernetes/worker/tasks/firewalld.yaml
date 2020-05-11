@@ -11,31 +11,34 @@
     name: firewalld
     enabled: no
   register: firewalld_disabled
-  when: firewalld_installed is succeeded and ansible_distribution != 'CentOS'
+#  when: firewalld_installed is succeeded and ansible_distribution != 'CentOS'
   
 - name: Ensure firewalld is stopped (!CentOS)
   systemd:
     name: firewalld
     state: stopped
   ignore_errors: yes
-  when: firewalld_installed is succeeded and ansible_distribution != 'CentOS'
+#  when: firewalld_installed is succeeded and ansible_distribution != 'CentOS'
 
-- name: Ensure firewalld is Started (CentOS)
-  systemd:
-    name: firewalld
-    state: started
-  when: firewalld_installed is succeeded and ansible_distribution == 'CentOS'
+#- name: Ensure firewalld is Started (CentOS)
+#  systemd:
+#    name: firewalld
+#    state: started
+#  when: firewalld_installed is succeeded and ansible_distribution == 'CentOS'
 
-- name: Open firewalld ports
-  firewalld:
-    port: "{{item}}"
-    permanent: yes
-    state: enabled
-  with_items:
-    - 6443/tcp
-    - 2379-2380/tcp
-    - 10250/tcp
-    - 10251/tcp
-    - 10252/tcp
-    - 10255/tcp    
-  when: firewalld_installed is succeeded and ansible_distribution == "CentOS"
+##
+# TODO: Need to add BGP ports
+##
+#- name: Open firewalld ports
+#  firewalld:
+#    port: "{{item}}"
+#    permanent: yes
+#    state: enabled
+#  with_items:
+#    - 6443/tcp
+#    - 2379-2380/tcp
+#    - 10250/tcp
+#    - 10251/tcp
+#    - 10252/tcp
+#    - 10255/tcp    
+#  when: firewalld_installed is succeeded and ansible_distribution == "CentOS"
