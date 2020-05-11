@@ -1,3 +1,13 @@
+- name: Remove Podman
+  package:
+    name: "{{item}}"
+    state: absent
+  register: podman_removed
+  with_items:
+    - podman
+    - podman-docker
+    - podman-manpages
+
 - name: Install Docker Repo (Fedora)
   yum_repository:
     name: Docker
@@ -24,7 +34,7 @@
   package:
     name: "{{item}}"
     state: present
-  when: fedora_install is succeeded or centos_install is succeeded
+  when: (fedora_install is succeeded or centos_install is succeeded) and podman_removed is succeeded
   register: install_packages
   with_items:
     - docker-ce
