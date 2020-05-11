@@ -1,3 +1,4 @@
 ---
 dependencies:
+  - role: common/redhat/epel
   - role: common/git

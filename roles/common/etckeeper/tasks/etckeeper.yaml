@@ -1,10 +1,4 @@
 ---
-- name: Install git
-  package:
-    name: git
-    state: present
-  register: git_install
-
 - name: Install etckeeper
   package:
     name: etckeeper
@@ -13,4 +7,4 @@
 
 - name: Initalize etckeeper
   command: etckeeper init
-  when: git_install is succeeded and etckeeper_install is succeeded
+  when: etckeeper_install is succeeded
