@@ -1,0 +1,5 @@
+- name: Install patch
+  package:
+    name: patch
+    state: present
+  when: ansible_distribution != 'CentOS'
