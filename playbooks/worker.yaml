@@ -1,7 +1,6 @@
 - hosts:
-    - worker1
+    - worker1    
     - worker2
-    - worker3
   roles:
     - role: common/etckeeper
     - role: server/network-tools
