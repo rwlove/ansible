@@ -1,6 +1,5 @@
 - hosts:
     - worker1    
-    - worker2
     - worker3
   roles:
     - role: common/etckeeper
@@ -14,3 +13,4 @@
     USER: root
     HOME: /root
     roles_path: ../roles
+#    - worker2
