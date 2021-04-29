@@ -3,3 +3,4 @@
 #- import_tasks: crio.yaml
 - import_tasks: kubeadm.yaml
 - import_tasks: firewalld.yaml
+- import_tasks: udev-rules.yaml
