@@ -1,0 +1,13 @@
+- name: Ensure NFS common is installed.
+  become: yes
+  package:
+    name: nfs-common
+    state: installed
+    update_cache: yes
+
+- name: Ensure NFS Utils is installed.
+  become: yes
+  package:
+    name: nfs-utils
+    state: installed
+    update_cache: yes

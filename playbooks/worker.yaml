@@ -1,6 +1,7 @@
 - hosts:
     - worker4
   roles:
+    - role: common/nfs
     - role: common/etckeeper
     - role: server/network-tools
     - role: desktop/developer
