@@ -18,3 +18,6 @@ all:
     worker3:
       ansible_host: worker3.thesteamedcrab.com
       ansible_user: root
+    worker4:
+      ansible_host: worker4.thesteamedcrab.com
+      ansible_user: root
