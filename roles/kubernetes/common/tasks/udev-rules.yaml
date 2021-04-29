@@ -1,7 +1,10 @@
 ---
 - name: Copy udev rules for IOT devices
   copy:
-    src: files/99-wyze.rules
-    dest: /etc/udev/rules.d/99-wyze.rules
+    src: 'files/{{item}}'
+    dest: '/etc/udev/rules.d/{{item}}'
   register: udev_rules
-  
+  with_items:
+    - 97-coral-tpu.rules
+    - 98-zstick.rules
+    - 99-wyze.rules
