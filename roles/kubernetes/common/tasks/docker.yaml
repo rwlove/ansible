@@ -7,6 +7,8 @@
     - podman
     - podman-docker
     - podman-manpages
+    - buildah
+    - runc
 
 - name: Install Docker Repo (Fedora)
   yum_repository:
