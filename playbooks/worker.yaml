@@ -1,4 +1,7 @@
 - hosts:
+    - worker1
+    - worker2
+    - worker3
     - worker4
   roles:
     - role: kubernetes/network/wireguard
