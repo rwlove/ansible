@@ -5,6 +5,7 @@
     dest: '/etc/udev/rules.d/{{item}}'
   register: udev_rules
   with_items:
+    - 96-bt-usb.rules
     - 97-coral-tpu.rules
     - 98-zstick.rules
     - 99-wyze.rules
