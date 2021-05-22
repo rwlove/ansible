@@ -1,0 +1,15 @@
+---
+- name: Enable Fedora Copr for Wireguard
+  command:
+    cmd: dnf copr enable -y jdoss/wireguard
+    creates: /etc/yum.repos.d/_copr_jdoss-wireguard.repo
+
+- name: Install Wireguard DKMS
+  package:
+    name: wireguard-dkms
+    state: present
+
+- name: Install Wireguard Tools
+  package:
+    name: wireguard-tools
+    state: present

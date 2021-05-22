@@ -1,0 +1,22 @@
+---
+- name: Install Virtualization Infrastructure and Tools
+  package:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - virt-install
+    - libvirt
+    - cockpit-machines
+  register: install_packages
+
+- name: Enable/Start libVirt
+  systemd:
+    name: "{{item}}"
+    state: started
+    enabled: yes
+  when: install_packages is succeeded    
+  with_items:
+    - libvirtd
+    - cockpit
+    - virt-top
+    - libguestfs-tools

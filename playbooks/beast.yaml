@@ -4,6 +4,7 @@
     - role: ../roles/common/etckeeper
     - role: ../roles/desktop/terminal
     - role: ../roles/desktop/developer
+    - role: ../roles/server/virtualization-host
   vars:
     USER: rwlove
     HOME: /home/rwlove

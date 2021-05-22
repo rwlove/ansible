@@ -4,7 +4,7 @@ all:
       ansible_host: brain.thesteamedcrab.com
       ansible_user: root
     beast:
-      ansible_host: beast-2
+      ansible_host: beast.thesteamedcrab.com
       ansible_user: root
     vmheart:
       ansible_host: vmheart.thesteamedcrab.com

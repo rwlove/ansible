@@ -1,0 +1,14 @@
+- hosts:
+    - master1
+  roles:
+    - role: common/etckeeper
+    - role: server/network-tools
+    - role: desktop/developer
+    - role: desktop/terminal
+    - role: kubernetes/master
+#    - role: ../roles/kubernetes/network/ovn-kubernetes
+
+  vars:
+    USER: root
+    HOME: /root
+    roles_path: ../roles
