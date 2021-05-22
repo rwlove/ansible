@@ -1,0 +1,9 @@
+- hosts: 'beast'
+  remote_user: root
+  roles:
+    - role: ../roles/common/etckeeper
+    - role: ../roles/desktop/terminal
+    - role: ../roles/desktop/developer
+  vars:
+    USER: rwlove
+    HOME: /home/rwlove
