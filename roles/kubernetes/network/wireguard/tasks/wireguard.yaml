@@ -4,6 +4,11 @@
     cmd: dnf copr enable -y jdoss/wireguard
     creates: /etc/yum.repos.d/_copr_jdoss-wireguard.repo
 
+- name: Install DKMS
+  package:
+    name: dkms
+    state: present
+
 - name: Install Wireguard DKMS
   package:
     name: wireguard-dkms

@@ -12,6 +12,12 @@ all:
     master1:
       ansible_host: master1.thesteamedcrab.com
       ansible_user: root
+    master2:
+      ansible_host: master2.thesteamedcrab.com
+      ansible_user: root
+    master3:
+      ansible_host: master3.thesteamedcrab.com
+      ansible_user: root      
     worker1:
       ansible_host: worker1.thesteamedcrab.com
       ansible_user: root
@@ -24,3 +30,12 @@ all:
     worker4:
       ansible_host: worker4.thesteamedcrab.com
       ansible_user: root
+    worker5:
+      ansible_host: worker5.thesteamedcrab.com
+      ansible_user: root
+    worker6:
+      ansible_host: worker6.thesteamedcrab.com
+      ansible_user: root
+    worker7:
+      ansible_host: worker7.thesteamedcrab.com
+      ansible_user: root      
