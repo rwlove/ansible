@@ -1,4 +1,7 @@
 ---
+- name: Enable Powertools
+  command: dnf config-manager --set-enabled powertools
+
 - name: Enable Fedora Copr for Wireguard
   command:
     cmd: dnf copr enable -y jdoss/wireguard
@@ -18,3 +21,8 @@
   package:
     name: wireguard-tools
     state: present
+
+- name: Copy /etc/sysctl.d/95-wireguard.conf
+  copy:
+    src: files/95-wireguard.conf
+    dest: /etc/sysctl.d/95-wireguard.conf
