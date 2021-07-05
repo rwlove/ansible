@@ -8,6 +8,7 @@
   roles:
     - role: roles/common/redhat/epel
     - role: kubernetes/network/wireguard
+    - role: kubernetes/network/tc
     - role: common/nfs
     - role: common/etckeeper
     - role: server/network-tools

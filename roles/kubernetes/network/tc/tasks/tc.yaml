@@ -1,0 +1,5 @@
+---
+- name: Install tc
+  package:
+    name: tc
+    state: present
