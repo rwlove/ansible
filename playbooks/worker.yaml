@@ -15,6 +15,7 @@
     - role: desktop/developer
     - role: desktop/terminal
     - role: kubernetes/worker
+    - role: common/reboot
 #    - role: ../roles/kubernetes/network/ovn-kubernetes
 
   vars:
