@@ -26,3 +26,8 @@
   copy:
     src: files/modules-load-wireguard.conf
     dest: /etc/modules-load.d/wireguard.conf
+
+- name: Copy /etc/sysctl.d/95-wireguard.conf
+  copy:
+    src: files/95-wireguard.conf
+    dest: /etc/sysctl.d/95-wireguard.conf
